@@ -17,6 +17,7 @@ spec:
       containers:
       - name: php
         image: izquierdogalan/php-test
+        imagePullPolicy: Always
         ports:
         - containerPort: 9000
         resources:
