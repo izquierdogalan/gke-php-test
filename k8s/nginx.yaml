@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: NGINX_IMAGE_NAME
+        image: izquierdogalan/nginx-test
         ports:
         - containerPort: 80
         resources:

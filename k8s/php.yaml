@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: php
-        image: PHP_IMAGE_NAME
+        image: izquierdogalan/php-test
         ports:
         - containerPort: 9000
         resources:

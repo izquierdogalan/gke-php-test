@@ -1,12 +1,12 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: nginx
+  name: nginx-ingress
   annotations:
-    external-dns.alpha.kubernetes.io/hostname: gke-test.marekbartik.com
+    kubernetes.io/ingress.global-static-ip-name: nginx-ingress
 spec:
   rules:
-  - host: gke-test.marekbartik.com
+  - host: jonathan
     http:
       paths:
       - backend:
