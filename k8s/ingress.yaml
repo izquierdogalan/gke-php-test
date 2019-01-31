@@ -5,6 +5,9 @@ metadata:
   annotations:
     kubernetes.io/ingress.global-static-ip-name: nginx-ingress
 spec:
+  tls:
+    - hosts:
+        - jonathan
   rules:
   - host: jonathan
     http:

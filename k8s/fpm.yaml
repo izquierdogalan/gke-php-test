@@ -6,7 +6,7 @@ spec:
   selector:
     matchLabels:
       app: fpm
-  replicas: 2
+  replicas: 5
   template: # create pods using pod definition in this template
     metadata:
       # unlike pod-nginx.yaml, the name is not included in the meta data as a unique name is
@@ -18,15 +18,20 @@ spec:
       - name: fpm
         image: localhost:32000/autonet6:latest
         imagePullPolicy: Always
+        env:
+          - name: SYMFONY__ENV__RESOURCES_URL
+            value: "https://jonathan"
+          - name: SYMFONY__ENV__S3__BUCKET_DOMAIN
+            value: "https://jonathan"
         ports:
         - containerPort: 9000
         resources:
           requests:
-            memory: "16Mi"
-            cpu: "1m"
+            memory: "160Mi"
+#            cpu: "1m"
           limits:
-            memory: "128Mi"
-            cpu: "20m"
+            memory: "256Mi"
+#            cpu: "20m"
 ---
 kind: Service
 apiVersion: v1
