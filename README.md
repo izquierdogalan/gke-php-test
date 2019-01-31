@@ -8,3 +8,5 @@ Example php app showing the private IP of running pod
 - provisioned GKE, see `cluster.yaml` and jinja files
 
 ![nginx and php-fpm independently](./test-scaling.png "Nginx and php scales independently, traffic is loadbalanced")
+
+

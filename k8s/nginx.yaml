@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: izquierdogalan/nginx-test
+        image: localhost:32000/autonet6-nginx:latest
         imagePullPolicy: Always
         ports:
         - containerPort: 80
