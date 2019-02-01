@@ -6,7 +6,7 @@ spec:
   selector:
     matchLabels:
       app: fpm
-  replicas: 5
+  replicas: 2
   template: # create pods using pod definition in this template
     metadata:
       # unlike pod-nginx.yaml, the name is not included in the meta data as a unique name is
@@ -18,20 +18,48 @@ spec:
       - name: fpm
         image: localhost:32000/autonet6:latest
         imagePullPolicy: Always
+        volumeMounts:
+          - name: autonet-fpm-config
+            mountPath: /usr/local/etc/php/conf.d/custom.ini
+            subPath: custom.ini
         env:
           - name: SYMFONY__ENV__RESOURCES_URL
             value: "https://jonathan"
           - name: SYMFONY__ENV__S3__BUCKET_DOMAIN
             value: "https://jonathan"
+          - name: SYMFONY__ENV__RDS__DATABASE
+            value: "autonet6"
+          - name: SYMFONY__ENV__RDS__PASSWORD
+            value: "password"
+          - name: SYMFONY__ENV__RDS__PORT
+            value: "3306"
+          - name: SYMFONY__ENV__RDS__RO__DATABASE
+            value: "autonet6"
+          - name: SYMFONY__ENV__RDS__RO__PASSWORD
+            value: "password"
+          - name: SYMFONY__ENV__RDS__RO__PORT
+            value: "3306"
+          - name: SYMFONY__ENV__RDS__RO__SERVER
+            value: "mysql"
+          - name: SYMFONY__ENV__RDS__RO__USER
+            value: "root"
+          - name: SYMFONY__ENV__RDS__SERVER
+            value: "mysql"
+          - name: SYMFONY__ENV__RDS__USER
+            value: "root"
         ports:
         - containerPort: 9000
-        resources:
-          requests:
-            memory: "160Mi"
+#        resources:
+#          requests:
+#            memory: "160Mi"
 #            cpu: "1m"
-          limits:
-            memory: "256Mi"
+#          limits:
+#            memory: "512Mi"
 #            cpu: "20m"
+      volumes:
+        - name: autonet-fpm-config
+          configMap:
+            name: autonet-fpm-config
 ---
 kind: Service
 apiVersion: v1

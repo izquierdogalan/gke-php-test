@@ -1,0 +1,19 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: autonet-fpm-config
+data:
+  custom.ini: |-
+    date.timezone = 'Etc/UTC'"
+    opcache.validate_timestamps=0
+    opcache.enable_cli=1
+    opcache.revalidate_freq=0
+    opcache.max_accelerated_files=100000
+    opcache.memory_consumption=192
+    opcache.fast_shutdown=1
+    realpath_cache_size=4096k
+    realpath_cache_ttl=7200
+    expose_php = Off
+    upload_max_filesize = 20M
+    post_max_size = 20M
+    max_input_vars = 30000
